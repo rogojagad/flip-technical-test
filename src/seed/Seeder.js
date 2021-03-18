@@ -20,6 +20,8 @@ async function seedUsers() {
   for (let index = 0; index < 5; index++) {
     const fields = Object();
     fields[User.ATTRIBUTE_NAME] = `User ${index}`;
+    fields[User.ATTRIBUTE_BANK_CODE] = `BCA`;
+    fields[User.ATTRIBUTE_ACCOUNT_NUMBER] = `12300${index}`;
 
     const user = await userRepository.createOne(fields);
     userIds.push(user.id);
