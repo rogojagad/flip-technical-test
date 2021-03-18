@@ -1,4 +1,3 @@
-import DisbursementResponse from "@src/const/DisbursementResponse";
 import HTTPClient from "@src/entity/HTTPClient";
 
 export default class DisbursementHttpRepository {
