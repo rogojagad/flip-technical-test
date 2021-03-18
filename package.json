@@ -30,6 +30,6 @@
     "querystring": "^0.2.1"
   },
   "_moduleAliases": {
-    "src": "./src"
+    "~src": "./src"
   }
 }

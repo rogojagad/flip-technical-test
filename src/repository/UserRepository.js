@@ -1,5 +1,5 @@
-import User from "src/const/User";
-import db from "src/entity/Firebase";
+import User from "~src/const/User";
+import db from "~src/entity/Firebase";
 
 export default class UserRepository {
   constructor() {

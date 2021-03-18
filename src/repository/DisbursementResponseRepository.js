@@ -1,5 +1,5 @@
-import DisbursementResponse from "src/const/DisbursementResponse";
-import db from "src/entity/Firebase";
+import DisbursementResponse from "~src/const/DisbursementResponse";
+import db from "~src/entity/Firebase";
 
 export default class DisbursementRepository {
   constructor() {
