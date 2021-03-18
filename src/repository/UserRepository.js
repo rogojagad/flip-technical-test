@@ -6,7 +6,7 @@ export default class UserRepository {
     this.db = db;
   }
 
-  async createOne(id, fields) {
-    return await db.collection(User.COLLECTION).doc(id).set(fields);
+  async createOne(fields) {
+    return await db.collection(User.COLLECTION).add(fields);
   }
 }

@@ -11,19 +11,18 @@ seed();
 async function seed() {
   const userIds = await seedUsers();
   await seedBalance(userIds);
+  console.log("Done Seeding Database");
 }
 
 async function seedUsers() {
   const userIds = new Array();
 
   for (let index = 0; index < 5; index++) {
-    const userId = `user${index}`;
     const fields = Object();
-    fields[User.ATTRIBUTE_ID] = userId;
     fields[User.ATTRIBUTE_NAME] = `User ${index}`;
 
-    userIds.push(userId);
-    userRepository.createOne(userId, fields);
+    const user = await userRepository.createOne(fields);
+    userIds.push(user.id);
   }
 
   return userIds;
