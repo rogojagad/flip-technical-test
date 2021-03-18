@@ -1,3 +1,4 @@
+import DisbursementResponse from "@src/const/DisbursementResponse";
 import HTTPClient from "@src/entity/HTTPClient";
 
 export default class DisbursementHttpRepository {
@@ -9,9 +10,9 @@ export default class DisbursementHttpRepository {
   async sendDisbursement(data) {}
 
   async checkDisbursementStatus(transactionId) {
-    const response = this.client.get(`${this.actionEndpoint}/${transactionId}`);
-    console.log(response);
+    const response = await this.client.get(
+      `${this.actionEndpoint}/${transactionId}`
+    );
+    return response;
   }
 }
-
-new DisbursementHttpRepository().checkDisbursementStatus("3246628793");
