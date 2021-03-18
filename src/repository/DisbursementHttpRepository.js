@@ -7,7 +7,10 @@ export default class DisbursementHttpRepository {
     this.actionEndpoint = process.env.FLIP_API_DISBURSEMENT_ACTION;
   }
 
-  async sendDisbursement(data) {}
+  async sendDisbursement(data) {
+    const response = await this.client.post(this.actionEndpoint, data);
+    return response;
+  }
 
   async checkDisbursementStatus(transactionId) {
     const response = await this.client.get(
