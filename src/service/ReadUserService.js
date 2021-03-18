@@ -1,4 +1,4 @@
-import UserRepository from "@src/repository/UserRepository";
+import UserRepository from "src/repository/UserRepository";
 
 export default class ReadUserService {
   constructor() {

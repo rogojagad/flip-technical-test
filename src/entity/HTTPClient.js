@@ -1,5 +1,5 @@
 import axios from "axios";
-import DisbursementPayload from "@src/const/DisbursementPayload";
+import DisbursementPayload from "src/const/DisbursementPayload";
 import "dotenv/config";
 
 export default class HTTPClient {

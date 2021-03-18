@@ -1,5 +1,5 @@
-import Balance from "@src/const/Balance";
-import db from "@src/entity/Firebase";
+import Balance from "src/const/Balance";
+import db from "src/entity/Firebase";
 
 export default class BalanceRepository {
   constructor() {

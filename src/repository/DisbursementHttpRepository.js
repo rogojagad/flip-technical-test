@@ -1,4 +1,4 @@
-import HTTPClient from "@src/entity/HTTPClient";
+import HTTPClient from "src/entity/HTTPClient";
 
 export default class DisbursementHttpRepository {
   constructor() {
