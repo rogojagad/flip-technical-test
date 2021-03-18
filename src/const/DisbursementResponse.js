@@ -1,3 +1,5 @@
+const COLLECTION = "disbursement_response";
+
 const ATTRIBUTE_ID = "id";
 const ATTRIBUTE_AMOUNT = "amount";
 const ATTRIBUTE_STATUS = "status";
@@ -22,4 +24,6 @@ export default Object.freeze({
   ATTRIBUTE_RECEIPT,
   ATTRIBUTE_TIME_SERVED,
   ATTRIBUTE_FEE,
+
+  COLLECTION,
 });
