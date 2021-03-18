@@ -1,0 +1,24 @@
+{
+  "name": "flip-technical-test",
+  "version": "1.0.0",
+  "description": "Flip BE Technical Test",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run babel:build",
+    "babel:build": "babel -d ./build ./src -s",
+    "clean": "rm -rf build && mkdir build",
+    "test": "jest"
+  },
+  "author": "Rogo Jagad Alit",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10"
+  },
+  "dependencies": {
+    "firebase": "^8.3.0",
+    "firebase-admin": "^9.5.0",
+    "jest": "^26.6.3"
+  }
+}
