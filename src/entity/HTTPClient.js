@@ -7,7 +7,7 @@ export default class HTTPClient {
   constructor() {
     const apiSecret = process.env.FLIP_API_SECRET_KEY;
     const basicToken =
-      "Basic " + Buffer.from(`${apiSecret}:`).toString("base64");
+      "Basic ss" + Buffer.from(`${apiSecret}:`).toString("base64");
 
     const header = Object();
     header[DisbursementPayload.FIELD_HEADER_AUTHORIZATION] = basicToken;

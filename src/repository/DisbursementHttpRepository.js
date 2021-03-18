@@ -1,3 +1,4 @@
+import DisbursementResponse from "~src/const/DisbursementResponse";
 import HTTPClient from "~src/entity/HTTPClient";
 
 export default class DisbursementHttpRepository {
@@ -7,20 +8,26 @@ export default class DisbursementHttpRepository {
   }
 
   async sendDisbursement(data) {
+    const response = Object();
+
     try {
-      const response = await this.client.post(this.actionEndpoint, data);
-      return {
-        data: response.data,
-        status: response.status,
-        statusText: response.statusText,
-      };
+      const apiResponse = await this.client.post(this.actionEndpoint, data);
+
+      response[DisbursementResponse.ATTRIBUTE_DATA] = apiResponse.data;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS] =
+        apiResponse.status;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS_TEXT] =
+        apiResponse.statusText;
+
+      return response;
     } catch (error) {
-      return {
-        data: error.response.data,
-        status: error.response.status,
-        statusText: error.response.statusText,
-      };
+      response[DisbursementResponse.ATTRIBUTE_DATA] = error.response.data;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS] =
+        error.response.status;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS_TEXT] =
+        error.response.statusText;
     }
+    return response;
   }
 
   async checkDisbursementStatus(transactionId) {
