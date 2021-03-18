@@ -18,4 +18,4 @@ admin.initializeApp({
   credential: admin.credential.cert(config),
 });
 
-export { admin };
+export default admin.firestore();
