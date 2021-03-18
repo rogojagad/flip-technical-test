@@ -1,4 +1,4 @@
-const COLLECTION = "user";
+const COLLECTION = "balance";
 
 const ATTRIBUTE_AMOUNT = "amount";
 const ATTRIBUTE_USER_ID = "user_id";
