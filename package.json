@@ -21,6 +21,7 @@
     "link-module-alias": "^1.2.0"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "dotenv": "^8.2.0",
     "firebase": "^8.3.0",
