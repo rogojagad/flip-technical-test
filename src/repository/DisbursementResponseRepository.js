@@ -7,6 +7,8 @@ export default class DisbursementRepository {
   }
 
   async createOne(fields) {
-    return await db.collection(DisbursementResponse.COLLECTION).add(fields);
+    return await this.db
+      .collection(DisbursementResponse.COLLECTION)
+      .add(fields);
   }
 }

@@ -7,6 +7,6 @@ export default class BalanceRepository {
   }
 
   async createOne(fields) {
-    return await db.collection(Balance.COLLECTION).add(fields);
+    return await this.db.collection(Balance.COLLECTION).add(fields);
   }
 }
