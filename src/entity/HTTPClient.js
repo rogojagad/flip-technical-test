@@ -5,14 +5,16 @@ import "dotenv/config";
 export default class HTTPClient {
   constructor() {
     const apiSecret = process.env.FLIP_API_SECRET_KEY;
-    const basicToken = "Basic " + btoa(`${apiSecret}:`);
+    const basicToken =
+      "Basic " + Buffer.from(`${apiSecret}:`).toString("base64");
+
     const header = Object();
     header[DisbursementPayload.FIELD_HEADER_AUTHORIZATION] = basicToken;
     header[DisbursementPayload.FIELD_HEADER_CONTENT_TYPE] =
       "application/x-www-form-urlencoded";
 
     const options = {
-      baseUrl: process.env.FLIP_API_BASE_URL,
+      baseURL: process.env.FLIP_API_BASE_URL,
       headers: header,
     };
 
@@ -20,10 +22,10 @@ export default class HTTPClient {
   }
 
   async get(endpoint) {
-    return await this.client.get(endpoint);
+    return await (await this.client.get(endpoint)).data;
   }
 
   async post(endpoint, data) {
-    return await this.client.get(endpoint, JSON.stringify(data));
+    return await (await this.client.post(endpoint, JSON.stringify(data))).data;
   }
 }
