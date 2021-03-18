@@ -12,4 +12,5 @@ export default Object.freeze({
   ATTRIBUTE_TIME_SERVED,
   ATTRIBUTE_TRANSACTION_ID,
   ATTRIBUTE_USER_ID,
+  COLLECTION,
 });
