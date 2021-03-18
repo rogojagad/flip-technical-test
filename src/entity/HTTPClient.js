@@ -1,6 +1,7 @@
+import "dotenv/config";
 import axios from "axios";
 import DisbursementPayload from "~src/const/DisbursementPayload";
-import "dotenv/config";
+import querystring from "querystring";
 
 export default class HTTPClient {
   constructor() {
@@ -26,6 +27,6 @@ export default class HTTPClient {
   }
 
   async post(endpoint, data) {
-    return await (await this.client.post(endpoint, JSON.stringify(data))).data;
+    return await this.client.post(endpoint, querystring.stringify(data));
   }
 }
