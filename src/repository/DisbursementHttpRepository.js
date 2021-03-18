@@ -30,7 +30,7 @@ export default class DisbursementHttpRepository {
     return response;
   }
 
-  async checkDisbursementStatus(transactionId) {
+  async getDisbursementStatus(transactionId) {
     const response = await this.client.get(
       `${this.actionEndpoint}/${transactionId}`
     );
