@@ -7,8 +7,20 @@ export default class DisbursementHttpRepository {
   }
 
   async sendDisbursement(data) {
-    const response = await this.client.post(this.actionEndpoint, data);
-    return response;
+    try {
+      const response = await this.client.post(this.actionEndpoint, data);
+      return {
+        data: response.data,
+        status: response.status,
+        statusText: response.statusText,
+      };
+    } catch (error) {
+      return {
+        data: error.response.data,
+        status: error.response.status,
+        statusText: error.response.statusText,
+      };
+    }
   }
 
   async checkDisbursementStatus(transactionId) {
