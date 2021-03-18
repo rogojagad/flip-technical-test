@@ -8,8 +8,12 @@ export default class DisbursementHttpService {
     this.disbursementHttpRepository = new DisbursementHttpRepository();
   }
 
-  async sendOneDisbursement(user, balance, remark = "") {
+  async sendOneDisbursement(user, balance, remark = null) {
     const payload = Object();
+    const date = new Date();
+    remark = remark
+      ? remark
+      : `DISBURSEMENT ${user[User.ATTRIBUTE_NAME]} ${date}`;
 
     payload[DisbursementPayload.ATTRIBUTE_ACCOUNT_NUMBER] =
       user[User.ATTRIBUTE_ACCOUNT_NUMBER];
