@@ -13,4 +13,8 @@ export default class UserRepository {
   async readAll() {
     return await this.db.collection(User.COLLECTION).get();
   }
+
+  async readOneById(id) {
+    return await this.db.collection(User.COLLECTION).doc(id).get();
+  }
 }

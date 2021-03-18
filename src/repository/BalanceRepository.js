@@ -6,6 +6,13 @@ export default class BalanceRepository {
     this.db = db;
   }
 
+  async readOneByUserId(userId) {
+    return await this.db
+      .collection(Balance.COLLECTION)
+      .where(Balance.ATTRIBUTE_USER_ID, userId)
+      .get();
+  }
+
   async createOne(fields) {
     return await this.db.collection(Balance.COLLECTION).add(fields);
   }

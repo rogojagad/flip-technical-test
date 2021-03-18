@@ -5,6 +5,10 @@ export default class ReadUserService {
     this.userRepository = new UserRepository();
   }
 
+  async readOneById(id) {
+    return await this.userRepository.readOneById(id);
+  }
+
   async readAll() {
     const users = await this.userRepository.readAll();
     const results = new Array();
