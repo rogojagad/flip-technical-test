@@ -7,8 +7,13 @@ export default class DisbursementRepository {
   }
 
   async createOne(fields) {
-    return await this.db
-      .collection(DisbursementResponse.COLLECTION)
-      .add(fields);
+    const docRef = await (
+      await this.db.collection(DisbursementResponse.COLLECTION).add(fields)
+    ).get();
+
+    const id = docRef.id;
+    const data = docRef.data();
+
+    return { id, ...data };
   }
 }

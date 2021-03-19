@@ -7,7 +7,14 @@ export default class UserRepository {
   }
 
   async createOne(fields) {
-    return await this.db.collection(User.COLLECTION).add(fields);
+    const docRef = await (
+      await this.db.collection(User.COLLECTION).add(fields)
+    ).get();
+
+    const id = docRef.id;
+    const data = docRef.data();
+
+    return { id, ...data };
   }
 
   async readAll() {

@@ -14,6 +14,13 @@ export default class BalanceRepository {
   }
 
   async createOne(fields) {
-    return await this.db.collection(Balance.COLLECTION).add(fields);
+    const docRef = await (
+      await this.db.collection(Balance.COLLECTION).add(fields)
+    ).get();
+
+    const id = docRef.id;
+    const data = docRef.data();
+
+    return { id, ...data };
   }
 }
