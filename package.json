@@ -9,7 +9,8 @@
     "clean": "rm -rf build && mkdir build",
     "db:seed": "npm run build && node build/seed/Seeder.js",
     "postinstall": "link-module-alias",
-    "test": "jest"
+    "test": "jest",
+    "disbursement-dev:update-status": "npx babel-node src/command/UpdateDisbursementStatusCommand.js"
   },
   "author": "Rogo Jagad Alit",
   "license": "ISC",
