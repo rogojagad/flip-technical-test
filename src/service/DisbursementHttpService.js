@@ -8,7 +8,7 @@ export default class DisbursementHttpService {
     this.disbursementHttpRepository = new DisbursementHttpRepository();
   }
 
-  async sendOneDisbursement(user, balance, remark = null) {
+  async sendOneDisbursement(user, balance, disbursementId, remark = null) {
     const payload = Object();
     const date = new Date();
     remark = remark
@@ -25,6 +25,14 @@ export default class DisbursementHttpService {
 
     const result = await this.disbursementHttpRepository.sendDisbursement(
       payload
+    );
+
+    return result;
+  }
+
+  async getDisbursementStatusById(disbursementId) {
+    const result = this.disbursementHttpRepository.getDisbursementStatus(
+      disbursementId
     );
 
     return result;
