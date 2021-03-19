@@ -9,7 +9,7 @@ export default class BalanceRepository {
   async readOneByUserId(userId) {
     return await this.db
       .collection(Balance.COLLECTION)
-      .where(Balance.ATTRIBUTE_USER_ID, userId)
+      .where(Balance.ATTRIBUTE_USER_ID, "==", userId)
       .get();
   }
 

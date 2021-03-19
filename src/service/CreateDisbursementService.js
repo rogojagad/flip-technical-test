@@ -1,5 +1,6 @@
 import Balance from "~src/const/Balance";
 import Disbursement from "~src/const/Disbursement";
+import DisbursementHttpService from "~src/service/DisbursementHttpService";
 import DisbursementRepository from "~src/repository/DisbursementRepository";
 import ReadBalanceService from "~src/service/ReadBalanceService";
 import ReadUserService from "~src/service/ReadUserService";
@@ -7,9 +8,10 @@ import User from "~src/const/User";
 
 export default class CreateDisbursementService {
   constructor() {
+    this.disbursementHttpService = new DisbursementHttpService();
     this.disbursementRepository = new DisbursementRepository();
-    this.readUserService = new ReadUserService();
     this.readBalanceService = new ReadBalanceService();
+    this.readUserService = new ReadUserService();
   }
 
   async createOneDisbursementByUserId(userId) {
@@ -26,6 +28,12 @@ export default class CreateDisbursementService {
       balance[Balance.ATTRIBUTE_AMOUNT];
     disbursement[Disbursement.ATTRIBUTE_STATUS] = Disbursement.STATUS_PENDING;
 
-    await this.disbursementRepository.createOne(disbursement);
+    const disbursementRecord = await this.disbursementRepository.createOne(
+      disbursement
+    );
+
+    this.disbursementHttpService.sendOneDisbursement(user, balance);
+
+    return (await disbursementRecord.get()).data();
   }
 }

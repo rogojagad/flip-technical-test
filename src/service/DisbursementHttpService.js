@@ -30,13 +30,3 @@ export default class DisbursementHttpService {
     return result;
   }
 }
-
-run();
-
-async function run() {
-  const user = { account_number: "11111", bank_code: "BCA", name: "User 1" };
-  const balance = { amount: 10000 };
-  const s = new DisbursementHttpService();
-
-  console.log(await s.sendOneDisbursement(user, balance));
-}

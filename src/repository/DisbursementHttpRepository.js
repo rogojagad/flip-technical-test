@@ -55,5 +55,3 @@ export default class DisbursementHttpRepository {
     return response;
   }
 }
-
-run();

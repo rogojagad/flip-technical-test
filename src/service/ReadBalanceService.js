@@ -6,6 +6,8 @@ export default class ReadUserService {
   }
 
   async readOneByUserId(userId) {
-    return await this.balanceRepository.readOneByUserId(userId);
+    return await (
+      await this.balanceRepository.readOneByUserId(userId)
+    ).docs[0].data();
   }
 }
