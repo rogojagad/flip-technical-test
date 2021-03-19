@@ -16,4 +16,11 @@ export default class DisbursementRepository {
 
     return { id, ...data };
   }
+
+  async updateOne(id, fields) {
+    return await this.db
+      .collection(Disbursement.COLLECTION)
+      .doc(id)
+      .update(fields);
+  }
 }
