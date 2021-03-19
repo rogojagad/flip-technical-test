@@ -3,12 +3,17 @@ import DisbursementHttpService from "~src/service/DisbursementHttpService";
 import Disbursement from "../const/Disbursement";
 import UpdateDisbursementService from "~src/service/UpdateDisbursementService";
 import ReadDisbursementService from "~src/service/ReadDisbursementService";
+import ReadBalanceService from "~src/service/ReadBalanceService";
+import UpdateBalanceService from "~src/service/UpdateBalanceService";
+import Balance from "../const/Balance";
 
 class UpdateDisbursementStatusCommand {
   constructor() {
     this.disbursementHttpService = new DisbursementHttpService();
     this.updateDisbursementService = new UpdateDisbursementService();
     this.readDisbursementService = new ReadDisbursementService();
+    this.readBalanceService = new ReadBalanceService();
+    this.updateBalanceService = new UpdateBalanceService();
   }
 
   async getAndUpdateDisbursementStatus(transactionId) {
@@ -27,13 +32,25 @@ class UpdateDisbursementStatusCommand {
       const disbursementRecord = await this.readDisbursementService.readOneByTransactionId(
         transactionId
       );
+      const userId = disbursementRecord[Disbursement.ATTRIBUTE_USER_ID];
+      const balanceRecord = await this.readBalanceService.readOneByUserId(
+        userId
+      );
 
       const newDisbursementStatusField = Object();
       newDisbursementStatusField[Disbursement.ATTRIBUTE_STATUS] = status;
 
-      this.updateDisbursementService.updateOne(
+      await this.updateDisbursementService.updateOne(
         disbursementRecord[Disbursement.ATTRIBUTE_ID],
         newDisbursementStatusField
+      );
+
+      const newBalanceField = Object();
+      newBalanceField[Balance.ATTRIBUTE_AMOUNT] = 0;
+
+      await this.updateBalanceService.updateOne(
+        balanceRecord[Balance.ATTRIBUTE_ID],
+        newBalanceField
       );
     }
 
