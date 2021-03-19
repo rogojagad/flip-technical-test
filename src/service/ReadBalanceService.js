@@ -1,6 +1,6 @@
 import BalanceRepository from "~src/repository/BalanceRepository";
 
-export default class ReadUserService {
+export default class ReadBalanceService {
   constructor() {
     this.balanceRepository = new BalanceRepository();
   }
