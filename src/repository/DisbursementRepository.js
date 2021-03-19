@@ -23,4 +23,11 @@ export default class DisbursementRepository {
       .doc(id)
       .update(fields);
   }
+
+  async readOneByTransactionId(transactionId) {
+    return await this.db
+      .collection(Disbursement.COLLECTION)
+      .where(Disbursement.ATTRIBUTE_TRANSACTION_ID, "==", transactionId)
+      .get();
+  }
 }
