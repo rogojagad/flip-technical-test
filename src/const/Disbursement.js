@@ -1,3 +1,5 @@
+import BaseConst from "~src/const/BaseConst";
+
 const COLLECTION = "disbursement";
 
 const ATTRIBUTE_ACCOUNT_NUMBER = "account_number";
@@ -13,6 +15,7 @@ const STATUS_PENDING = "PENDING";
 const STATUS_SUCCESS = "SUCCESS";
 
 export default Object.freeze({
+  ...BaseConst,
   ATTRIBUTE_ACCOUNT_NUMBER,
   ATTRIBUTE_AMOUNT,
   ATTRIBUTE_BANK_CODE,
