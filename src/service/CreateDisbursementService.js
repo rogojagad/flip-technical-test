@@ -32,8 +32,12 @@ export default class CreateDisbursementService {
       disbursement
     );
 
-    this.disbursementHttpService.sendOneDisbursement(user, balance);
+    this.disbursementHttpService.sendOneDisbursement(
+      user,
+      balance,
+      disbursementRecord.id
+    );
 
-    return (await disbursementRecord.get()).data();
+    return disbursementRecord;
   }
 }
