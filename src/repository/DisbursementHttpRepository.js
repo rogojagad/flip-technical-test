@@ -31,9 +31,29 @@ export default class DisbursementHttpRepository {
   }
 
   async getDisbursementStatus(transactionId) {
-    const response = await this.client.get(
-      `${this.actionEndpoint}/${transactionId}`
-    );
+    const response = Object();
+
+    try {
+      const apiResponse = await this.client.get(
+        `${this.actionEndpoint}/${transactionId}`
+      );
+
+      response[DisbursementResponse.ATTRIBUTE_DATA] = apiResponse.data;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS] =
+        apiResponse.status;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS_TEXT] =
+        apiResponse.statusText;
+
+      return response;
+    } catch (error) {
+      response[DisbursementResponse.ATTRIBUTE_DATA] = error.response.data;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS] =
+        error.response.status;
+      response[DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS_TEXT] =
+        error.response.statusText;
+    }
     return response;
   }
 }
+
+run();
