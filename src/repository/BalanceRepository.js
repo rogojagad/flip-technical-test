@@ -23,4 +23,8 @@ export default class BalanceRepository {
 
     return { id, ...data };
   }
+
+  async updateOne(id, fields) {
+    return await this.db.collection(Balance.COLLECTION).doc(id).update(fields);
+  }
 }
