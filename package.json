@@ -10,7 +10,8 @@
     "db:seed": "npm run build && node build/seed/Seeder.js",
     "postinstall": "link-module-alias",
     "test": "jest",
-    "disbursement-dev:update-status": "npx babel-node src/command/UpdateDisbursementStatusCommand.js"
+    "disbursement-dev:update-status": "npx babel-node src/command/UpdateDisbursementStatusCommand.js",
+    "disbursement:update-status": "node build/command/UpdateDisbursementStatusCommand.js"
   },
   "author": "Rogo Jagad Alit",
   "license": "ISC",
