@@ -11,6 +11,7 @@
     "disbursement-dev:update-status": "npx babel-node src/command/UpdateDisbursementStatusCommand.js",
     "disbursement:update-status": "node build/command/UpdateDisbursementStatusCommand.js",
     "postinstall": "link-module-alias",
+    "disbursement-dev:retry-drafted": "npx babel-node src/command/RetrySendDraftedDisbursementCommand.js",
     "setup:dev": "npm ci && npm run postinstall",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "test": "jest"

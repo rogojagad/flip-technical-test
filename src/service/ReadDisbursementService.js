@@ -33,4 +33,8 @@ export default class ReadDisbursementService {
 
     return disbursements;
   }
+
+  async readManyByStatus(status) {
+    return await this.disbursementRepository.readManyByStatus(status);
+  }
 }
