@@ -39,4 +39,6 @@ app.listen(port, (err) => {
   if (err) {
     console.error(err);
   }
+
+  console.log(`Serving on port ${port}`);
 });
