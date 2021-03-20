@@ -11,6 +11,7 @@ const ATTRIBUTE_TIME_SERVED = "time_served";
 const ATTRIBUTE_TRANSACTION_ID = "transaction_id";
 const ATTRIBUTE_USER_ID = "user_id";
 
+const STATUS_DRAFT = "DRAFT";
 const STATUS_PENDING = "PENDING";
 const STATUS_SUCCESS = "SUCCESS";
 
@@ -25,6 +26,7 @@ export default Object.freeze({
   ATTRIBUTE_TRANSACTION_ID,
   ATTRIBUTE_USER_ID,
   COLLECTION,
+  STATUS_DRAFT,
   STATUS_PENDING,
   STATUS_SUCCESS,
 });

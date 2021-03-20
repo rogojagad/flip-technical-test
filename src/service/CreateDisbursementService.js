@@ -26,7 +26,7 @@ export default class CreateDisbursementService {
     disbursement[Disbursement.ATTRIBUTE_USER_ID] = userId;
     disbursement[Disbursement.ATTRIBUTE_AMOUNT] =
       balance[Balance.ATTRIBUTE_AMOUNT];
-    disbursement[Disbursement.ATTRIBUTE_STATUS] = Disbursement.STATUS_PENDING;
+    disbursement[Disbursement.ATTRIBUTE_STATUS] = Disbursement.STATUS_DRAFT;
 
     const disbursementRecord = await this.disbursementRepository.createOne(
       disbursement
