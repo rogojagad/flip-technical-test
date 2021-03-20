@@ -7,31 +7,13 @@ export default class ReadDisbursementService {
 
   async readOneByTransactionId(transactionId) {
     transactionId = parseInt(transactionId);
-    const docRef = (
-      await this.disbursementRepository.readOneByTransactionId(transactionId)
-    ).docs[0];
-
-    const id = docRef.id;
-    const data = docRef.data();
-
-    return { id, ...data };
+    return await this.disbursementRepository.readOneByTransactionId(
+      transactionId
+    );
   }
 
   async readManyByUserId(userId) {
-    const disbursementsRef = (
-      await this.disbursementRepository.readManyByUserId(userId)
-    ).docs;
-
-    const disbursements = new Array();
-
-    disbursementsRef.forEach((disbursementRef) => {
-      const id = disbursementRef.id;
-      const data = disbursementRef.data();
-
-      disbursements.push({ id, ...data });
-    });
-
-    return disbursements;
+    return await this.disbursementRepository.readManyByUserId(userId);
   }
 
   async readManyByStatus(status) {

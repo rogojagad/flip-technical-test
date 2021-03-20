@@ -25,10 +25,24 @@ export default class DisbursementRepository {
   }
 
   async readOneByTransactionId(transactionId) {
-    const disbursementsRef = (
+    const docRef = (
       await this.db
         .collection(Disbursement.COLLECTION)
         .where(Disbursement.ATTRIBUTE_TRANSACTION_ID, "==", transactionId)
+        .get()
+    ).docs[0];
+
+    const id = docRef.id;
+    const data = docRef.data();
+
+    return { id, ...data };
+  }
+
+  async readManyByUserId(userId) {
+    const disbursementsRef = (
+      await this.db
+        .collection(Disbursement.COLLECTION)
+        .where(Disbursement.ATTRIBUTE_USER_ID, "==", userId)
         .get()
     ).docs;
 
