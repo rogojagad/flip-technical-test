@@ -6,6 +6,7 @@ const ATTRIBUTE_ACCOUNT_NUMBER = "account_number";
 const ATTRIBUTE_AMOUNT = "amount";
 const ATTRIBUTE_BANK_CODE = "bank_code";
 const ATTRIBUTE_RECEIPT_URL = "receipt_url";
+const ATTRIBUTE_REMARK = "remark";
 const ATTRIBUTE_STATUS = "status";
 const ATTRIBUTE_TIME_SERVED = "time_served";
 const ATTRIBUTE_TRANSACTION_ID = "transaction_id";
@@ -23,6 +24,7 @@ export default Object.freeze({
   ATTRIBUTE_AMOUNT,
   ATTRIBUTE_BANK_CODE,
   ATTRIBUTE_RECEIPT_URL,
+  ATTRIBUTE_REMARK,
   ATTRIBUTE_STATUS,
   ATTRIBUTE_TIME_SERVED,
   ATTRIBUTE_TRANSACTION_ID,

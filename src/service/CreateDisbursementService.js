@@ -14,9 +14,13 @@ export default class CreateDisbursementService {
     this.readUserService = new ReadUserService();
   }
 
-  async createOneByUserId(userId) {
+  async createOneByUserId(userId, remark) {
     const user = await this.readUserService.readOneById(userId);
     const balance = await this.readBalanceService.readOneByUserId(userId);
+    const date = new Date();
+    remark = remark
+      ? remark
+      : `DISBURSEMENT ${user[User.ATTRIBUTE_NAME]} ${date}`;
 
     const disbursement = Object();
     disbursement[Disbursement.ATTRIBUTE_CREATED_AT] = new Date();
@@ -29,6 +33,7 @@ export default class CreateDisbursementService {
     disbursement[Disbursement.ATTRIBUTE_AMOUNT] =
       balance[Balance.ATTRIBUTE_AMOUNT];
     disbursement[Disbursement.ATTRIBUTE_STATUS] = Disbursement.STATUS_DRAFT;
+    disbursement[Disbursement.ATTRIBUTE_REMARK] = remark;
 
     const disbursementRecord = await this.disbursementRepository.createOne(
       disbursement
@@ -37,7 +42,8 @@ export default class CreateDisbursementService {
     this.disbursementHttpService.sendOneDisbursement(
       user,
       balance,
-      disbursementRecord.id
+      disbursementRecord.id,
+      remark
     );
 
     return disbursementRecord;
