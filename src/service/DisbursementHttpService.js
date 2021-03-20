@@ -34,13 +34,20 @@ export default class DisbursementHttpService {
       result[DisbursementResponse.ATTRIBUTE_DATA][
         DisbursementResponse.ATTRIBUTE_ID
       ];
+    const status =
+      result[DisbursementResponse.ATTRIBUTE_DATA][
+        DisbursementResponse.ATTRIBUTE_RESPONSE_STATUS
+      ];
 
-    const transactionIdField = Object();
-    transactionIdField[Disbursement.ATTRIBUTE_TRANSACTION_ID] = transactionId;
+    const disbursementUpdatedField = Object();
+    disbursementUpdatedField[
+      Disbursement.ATTRIBUTE_TRANSACTION_ID
+    ] = transactionId;
+    disbursementUpdatedField[Disbursement.ATTRIBUTE_STATUS] = status;
 
     this.updateDisbursementService.updateOne(
       disbursementId,
-      transactionIdField
+      disbursementUpdatedField
     );
 
     return result;
