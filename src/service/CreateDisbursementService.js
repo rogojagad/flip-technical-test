@@ -14,7 +14,7 @@ export default class CreateDisbursementService {
     this.readUserService = new ReadUserService();
   }
 
-  async createOneDisbursementByUserId(userId) {
+  async createOneByUserId(userId) {
     const user = await this.readUserService.readOneById(userId);
     const balance = await this.readBalanceService.readOneByUserId(userId);
 
