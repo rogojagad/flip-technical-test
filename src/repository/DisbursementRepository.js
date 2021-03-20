@@ -25,16 +25,42 @@ export default class DisbursementRepository {
   }
 
   async readOneByTransactionId(transactionId) {
-    return await this.db
-      .collection(Disbursement.COLLECTION)
-      .where(Disbursement.ATTRIBUTE_TRANSACTION_ID, "==", transactionId)
-      .get();
+    const disbursementsRef = (
+      await this.db
+        .collection(Disbursement.COLLECTION)
+        .where(Disbursement.ATTRIBUTE_TRANSACTION_ID, "==", transactionId)
+        .get()
+    ).docs;
+
+    const disbursements = new Array();
+
+    disbursementsRef.forEach((disbursementRef) => {
+      const id = disbursementRef.id;
+      const data = disbursementRef.data();
+
+      disbursements.push({ id, ...data });
+    });
+
+    return disbursements;
   }
 
-  async readManyByUserId(userId) {
-    return await this.db
-      .collection(Disbursement.COLLECTION)
-      .where(Disbursement.ATTRIBUTE_USER_ID, "==", userId)
-      .get();
+  async readManyByStatus(status) {
+    const disbursementsRef = (
+      await this.db
+        .collection(Disbursement.COLLECTION)
+        .where(Disbursement.ATTRIBUTE_STATUS, "==", status)
+        .get()
+    ).docs;
+
+    const disbursements = new Array();
+
+    disbursementsRef.forEach((disbursementRef) => {
+      const id = disbursementRef.id;
+      const data = disbursementRef.data();
+
+      disbursements.push({ id, ...data });
+    });
+
+    return disbursements;
   }
 }
