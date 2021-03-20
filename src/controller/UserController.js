@@ -16,14 +16,15 @@ export default class UserController {
 
   async readOneByUserId(userId, res) {
     let user = await this.readUserService.readOneById(userId);
-    let balance = await this.readBalanceService.readOneByUserId(userId);
 
-    if (user && balance) {
+    if (user) {
+      let balance = await this.readBalanceService.readOneByUserId(userId);
+
       const { amount } = balance;
       user = { balance: { amount }, ...user };
       return this.responseFactory.responseOk(res, user);
     }
 
-    return this.responseFactory.responseNotFound(res, { message: "Not Found" });
+    return this.responseFactory.responseNotFound(res);
   }
 }

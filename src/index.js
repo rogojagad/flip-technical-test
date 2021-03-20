@@ -1,9 +1,13 @@
 import bodyParser from "body-parser";
+import DisbursementController from "~src/controller/DisbursementController";
 import express from "express";
+import ResponseFactory from "~src/factory/ResponseFactory";
 import UserController from "~src/controller/UserController";
 
 const app = express();
+const disbursementController = new DisbursementController();
 const port = process.env.PORT || 5000;
+const responseFactory = new ResponseFactory();
 const userController = new UserController();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,7 +15,7 @@ app.use(bodyParser.json());
 app.disable("etag");
 
 app.get("/", (req, res) => {
-  res.send("Alive", 200);
+  return responseFactory.responseOk(res);
 });
 app.get("/users", (req, res) => {
   return userController.readAll(res);
@@ -20,8 +24,12 @@ app.get("/user/:userId", (req, res) => {
   const userId = req.params.userId;
   return userController.readOneByUserId(userId, res);
 });
+app.get("/user/disbursement/:userId", (req, res) => {
+  const userId = req.params.userId;
+  return disbursementController.readManyByUserId(userId, res);
+});
 app.get("*", function (req, res) {
-  res.send("not found", 404);
+  responseFactory.responseNotFound(res);
 });
 
 app.listen(port, (err) => {
