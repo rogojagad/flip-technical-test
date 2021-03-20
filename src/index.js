@@ -24,9 +24,12 @@ app.get("/user/:userId", (req, res) => {
   const userId = req.params.userId;
   return userController.readOneByUserId(userId, res);
 });
-app.get("/user/disbursement/:userId", (req, res) => {
+app.get("/user/:userId/disbursement", (req, res) => {
   const userId = req.params.userId;
   return disbursementController.readManyByUserId(userId, res);
+});
+app.post("/user/disbursement", (req, res) => {
+  return disbursementController.createOneByUserId(req.body, res);
 });
 app.get("*", function (req, res) {
   responseFactory.responseNotFound(res);
