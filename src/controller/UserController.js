@@ -19,8 +19,8 @@ export default class UserController {
     let balance = await this.readBalanceService.readOneByUserId(userId);
 
     if (user && balance) {
-      const { id, amount } = balance;
-      user = { balance: { id, amount }, ...user };
+      const { amount } = balance;
+      user = { balance: { amount }, ...user };
       return this.responseFactory.responseOk(res, user);
     }
 
