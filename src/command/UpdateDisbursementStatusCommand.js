@@ -72,7 +72,7 @@ async function run() {
       transactionId
     );
   } else {
-    console.log("Please provide disbursement ID");
+    console.log("Please provide Transaction ID");
   }
 }
 
