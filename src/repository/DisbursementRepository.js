@@ -30,4 +30,11 @@ export default class DisbursementRepository {
       .where(Disbursement.ATTRIBUTE_TRANSACTION_ID, "==", transactionId)
       .get();
   }
+
+  async readManyByUserId(userId) {
+    return await this.db
+      .collection(Disbursement.COLLECTION)
+      .where(Disbursement.ATTRIBUTE_USER_ID, "==", userId)
+      .get();
+  }
 }

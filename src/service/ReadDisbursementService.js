@@ -16,4 +16,21 @@ export default class ReadDisbursementService {
 
     return { id, ...data };
   }
+
+  async readManyByUserId(userId) {
+    const disbursementsRef = (
+      await this.disbursementRepository.readManyByUserId(userId)
+    ).docs;
+
+    const disbursements = new Array();
+
+    disbursementsRef.forEach((disbursementRef) => {
+      const id = disbursementRef.id;
+      const data = disbursementRef.data();
+
+      disbursements.push({ id, ...data });
+    });
+
+    return disbursements;
+  }
 }
