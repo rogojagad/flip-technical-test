@@ -11,6 +11,7 @@
     "disbursement-dev:update-status": "npx babel-node src/command/UpdateDisbursementStatusCommand.js",
     "disbursement:update-status": "node build/command/UpdateDisbursementStatusCommand.js",
     "postinstall": "link-module-alias",
+    "setup:dev": "npm ci && npm run postinstall",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "test": "jest"
   },
@@ -27,6 +28,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^4.1.0",
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase": "^8.3.0",
