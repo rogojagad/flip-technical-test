@@ -6,8 +6,7 @@ export default class ReadBalanceService {
   }
 
   async readOneByUserId(userId) {
-    const docRef = (await this.balanceRepository.readOneByUserId(userId))
-      .docs[0];
+    const docRef = await this.balanceRepository.readOneByUserId(userId);
 
     const id = docRef.id;
     const data = docRef.data();

@@ -7,10 +7,12 @@ export default class BalanceRepository {
   }
 
   async readOneByUserId(userId) {
-    return await this.db
-      .collection(Balance.COLLECTION)
-      .where(Balance.ATTRIBUTE_USER_ID, "==", userId)
-      .get();
+    return (
+      await this.db
+        .collection(Balance.COLLECTION)
+        .where(Balance.ATTRIBUTE_USER_ID, "==", userId)
+        .get()
+    ).docs[0];
   }
 
   async createOne(fields) {
