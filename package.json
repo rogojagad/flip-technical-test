@@ -4,14 +4,15 @@
   "description": "Flip BE Technical Test",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && npm run babel:build",
     "babel:build": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run babel:build",
     "clean": "rm -rf build && mkdir build",
     "db:seed": "npm run build && node build/seed/Seeder.js",
-    "postinstall": "link-module-alias",
-    "test": "jest",
     "disbursement-dev:update-status": "npx babel-node src/command/UpdateDisbursementStatusCommand.js",
-    "disbursement:update-status": "node build/command/UpdateDisbursementStatusCommand.js"
+    "disbursement:update-status": "node build/command/UpdateDisbursementStatusCommand.js",
+    "postinstall": "link-module-alias",
+    "start:dev": "nodemon --exec babel-node src/index.js",
+    "test": "jest"
   },
   "author": "Rogo Jagad Alit",
   "license": "ISC",
@@ -20,12 +21,14 @@
     "@babel/core": "^7.13.10",
     "@babel/node": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
-    "link-module-alias": "^1.2.0"
+    "link-module-alias": "^1.2.0",
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "firebase": "^8.3.0",
     "firebase-admin": "^9.5.0",
     "jest": "^26.6.3",
