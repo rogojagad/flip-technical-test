@@ -78,7 +78,8 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# .env included for submission purpose only
+# .env
 .env.test
 .env*.local
 
