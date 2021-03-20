@@ -19,6 +19,8 @@ export default class CreateDisbursementService {
     const balance = await this.readBalanceService.readOneByUserId(userId);
 
     const disbursement = Object();
+    disbursement[Disbursement.ATTRIBUTE_CREATED_AT] = new Date();
+    disbursement[Disbursement.ATTRIBUTE_UPDATED_AT] = new Date();
     disbursement[Disbursement.ATTRIBUTE_BANK_CODE] =
       user[User.ATTRIBUTE_BANK_CODE];
     disbursement[Disbursement.ATTRIBUTE_ACCOUNT_NUMBER] =
