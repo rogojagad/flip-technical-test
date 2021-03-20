@@ -14,7 +14,8 @@ export default class ReadUserService {
     const results = new Array();
 
     users.forEach((user) => {
-      results.push(user.data());
+      const id = user.id;
+      results.push({ id, ...user.data() });
     });
 
     return results;
