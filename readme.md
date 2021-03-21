@@ -2,6 +2,13 @@
 
 Flip.id Backend Engineer technical test
 
+# Stack
+
+- Language: Javascript (Node.js)
+- Database: Firebase (Cloud Firestore)
+- HTTP Framework: Express.js
+- Compiler / Transpiler: Babel
+
 # Setup
 
 For both environment, make sure `.env` exists (pushed for submission purpose only)
@@ -27,6 +34,21 @@ For dev environment, use prefix `disbursement-dev`
 # Endpoint List
 
 - `GET /users` Get list of all user
-- `GET /user/{userId}` Get user data by ID
-- `GET /user/{userId}/disbursement` Get user's disbursement history
-- `POST /user/disbursement` Submit disbursement with `user_id` and `remark` params
+- `GET /user/{userId}` Get user data by ID (Auth Protected)
+- `GET /user/{userId}/disbursement` Get user's disbursement history (Auth Protected)
+- `POST /user/disbursement` Submit disbursement request with `remark` params (optional). (Auth Protected)
+- `POST /login` Do login with `username` and `password` params. Use user's ID as username and password, available user's ID can be seen on `/users` endpoint
+
+# Directory Structure
+
+Main source code can be found under `src` directory. With each folder contains classes as follows:
+
+- `Command` classes that can be run from CLI
+- `Const` clasess that define data attribute (either value object or database record)
+- `Controller` classes which responsible to handle HTTP request
+- `Entity` classes that wrapped core functionality eg. HTTP Client and Firebase client
+- `Middleware` functions that serves pre-validator / processing for incoming HTTP request
+- `Repository` classes which responsible for querying data from data source (3rd Party API or Firebase)
+- `Seed` classes which responsible to provide testing data
+- `Service` classes which responsible to handle business logic
+- `index.js` entrypoint for starting the app
