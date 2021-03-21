@@ -36,9 +36,6 @@ app.get("/", (_, res) => {
 app.get("/users", (_, res) => {
   return userController.readAll(res);
 });
-app.get("/login", (_, res) => {
-  return authController.getLoginPage(res);
-});
 app.post("/login", (req, res) => {
   return authController.login(req.body, req, res);
 });

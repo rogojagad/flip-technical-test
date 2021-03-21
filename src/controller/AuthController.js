@@ -9,10 +9,6 @@ export default class AuthController {
     this.responseFactory = new ResponseFactory();
   }
 
-  async getLoginPage(res) {
-    return res.render("login.html");
-  }
-
   async login(reqBody, req, res) {
     const username = reqBody[Auth.QUERY_USERNAME];
     const password = reqBody[Auth.QUERY_PASSWORD];
