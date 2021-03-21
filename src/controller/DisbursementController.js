@@ -1,5 +1,5 @@
 import CreateDisbursementService from "~src/service/CreateDisbursementService";
-import Disbursement from "~src/const/Disbursement";
+import DisbursementQueryParam from "~src/const/DisbursementQueryParam";
 import ReadDisbursementService from "~src/service/ReadDisbursementService";
 import ResponseFactory from "~src/factory/ResponseFactory";
 
@@ -11,11 +11,13 @@ export default class DisbursementController {
   }
 
   async createOneByUserId(requestBody, res) {
-    const userId = requestBody[Disbursement.REQUEST_QUERY_USER_ID];
+    const userId = requestBody[DisbursementQueryParam.USER_ID];
+    const remark = requestBody[DisbursementQueryParam.REMARK];
 
     if (userId) {
       const disbursement = await this.createDisbursementService.createOneByUserId(
-        userId
+        userId,
+        remark
       );
 
       return this.responseFactory.responseCreated(res, disbursement);

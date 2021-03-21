@@ -16,8 +16,6 @@ const STATUS_DRAFT = "DRAFT";
 const STATUS_PENDING = "PENDING";
 const STATUS_SUCCESS = "SUCCESS";
 
-const REQUEST_QUERY_USER_ID = "user_id";
-
 export default Object.freeze({
   ...BaseConst,
   ATTRIBUTE_ACCOUNT_NUMBER,
@@ -30,7 +28,6 @@ export default Object.freeze({
   ATTRIBUTE_TRANSACTION_ID,
   ATTRIBUTE_USER_ID,
   COLLECTION,
-  REQUEST_QUERY_USER_ID,
   STATUS_DRAFT,
   STATUS_PENDING,
   STATUS_SUCCESS,
