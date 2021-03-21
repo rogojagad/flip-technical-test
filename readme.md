@@ -38,6 +38,7 @@ For dev environment, use prefix `disbursement-dev`
 - `GET /user/{userId}/disbursement` Get user's disbursement history (Auth Protected)
 - `POST /user/disbursement` Submit disbursement request with `remark` params (optional). (Auth Protected)
 - `POST /login` Do login with `username` and `password` params. Use user's ID as username and password, available user's ID can be seen on `/users` endpoint
+- `GET /disbursements` Read all disbursements 3rd Party Response
 
 # Directory Structure
 
