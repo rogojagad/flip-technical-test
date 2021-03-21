@@ -17,4 +17,8 @@ export default class ResponseFactory {
   responseNotFound(res, data = { message: "Not Found" }) {
     return res.status(404).json({ data });
   }
+
+  responseUnauthorized(res, data = { message: "Unathorized" }) {
+    return res.status(401).json({ data });
+  }
 }

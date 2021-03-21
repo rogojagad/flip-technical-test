@@ -7,6 +7,7 @@ import ResponseFactory from "~src/factory/ResponseFactory";
 import session from "express-session";
 import UserController from "~src/controller/UserController";
 import { v4 as uuid } from "uuid";
+import { isAuthenticated } from "~src/middleware/IsAuthenticated";
 
 const app = express();
 const disbursementController = new DisbursementController();
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
-    genid: (req) => {
+    genid: (_) => {
       return uuid();
     },
     secret: process.env.SESSION_SECRET,
@@ -35,18 +36,21 @@ app.get("/", (_, res) => {
 app.get("/users", (_, res) => {
   return userController.readAll(res);
 });
+app.get("/login", (_, res) => {
+  return authController.getLoginPage(res);
+});
 app.post("/login", (req, res) => {
   return authController.login(req.body, req, res);
 });
-app.get("/user/:userId", (req, res) => {
+app.get("/user/:userId", isAuthenticated, (req, res) => {
   const userId = req.params.userId;
   return userController.readOneByUserId(userId, res);
 });
-app.get("/user/:userId/disbursement", (req, res) => {
+app.get("/user/:userId/disbursement", isAuthenticated, (req, res) => {
   const userId = req.params.userId;
   return disbursementController.readManyByUserId(userId, res);
 });
-app.post("/user/disbursement", (req, res) => {
+app.post("/user/disbursement", isAuthenticated, (req, res) => {
   return disbursementController.createOne(req.body, res);
 });
 app.get("*", function (_, res) {
