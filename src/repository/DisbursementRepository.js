@@ -35,7 +35,11 @@ export default class DisbursementRepository {
     const id = docRef.id;
     const data = docRef.data();
 
-    return { id, ...data };
+    if (data) {
+      return { id, ...data };
+    }
+
+    return null;
   }
 
   async readManyByUserId(userId) {

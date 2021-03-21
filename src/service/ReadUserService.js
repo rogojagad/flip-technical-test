@@ -5,8 +5,8 @@ export default class ReadUserService {
     this.userRepository = new UserRepository();
   }
 
-  async readOneById(id) {
-    return (await this.userRepository.readOneById(id)).data();
+  async readOneById(idParam) {
+    return await this.userRepository.readOneById(idParam);
   }
 
   async readAll() {
