@@ -2,6 +2,7 @@ import "dotenv/config";
 import AuthController from "~src/controller/AuthController";
 import bodyParser from "body-parser";
 import DisbursementController from "~src/controller/DisbursementController";
+import DisbursementResponseController from "~src/controller/DisbursementResponseController";
 import express from "express";
 import ResponseFactory from "~src/factory/ResponseFactory";
 import session from "express-session";
@@ -15,6 +16,7 @@ const port = process.env.PORT || 5000;
 const responseFactory = new ResponseFactory();
 const userController = new UserController();
 const authController = new AuthController();
+const disbursementResponseController = new DisbursementResponseController();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -46,6 +48,9 @@ app.get("/user/:userId", isAuthenticated, (req, res) => {
 app.get("/user/:userId/disbursement", isAuthenticated, (req, res) => {
   const userId = req.params.userId;
   return disbursementController.readManyByUserId(userId, res);
+});
+app.get("/disbursements", isAuthenticated, (_, res) => {
+  return disbursementResponseController.readAll(res);
 });
 app.post("/user/disbursement", isAuthenticated, (req, res) => {
   return disbursementController.createOne(req.body, req, res);

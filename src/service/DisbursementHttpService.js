@@ -4,10 +4,12 @@ import DisbursementHttpRepository from "~src/repository/DisbursementHttpReposito
 import DisbursementPayload from "~src/const/DisbursementPayload";
 import DisbursementResponse from "~src/const/DisbursementResponse";
 import UpdateDisbursementService from "~src/service/UpdateDisbursementService";
+import CreateDisbursementResponseService from "~src/service/CreateDisbursementResponseService";
 import User from "~src/const/User";
 
 export default class DisbursementHttpService {
   constructor() {
+    this.createDisbursementResponseService = new CreateDisbursementResponseService();
     this.disbursementHttpRepository = new DisbursementHttpRepository();
     this.updateDisbursementService = new UpdateDisbursementService();
   }
@@ -44,6 +46,10 @@ export default class DisbursementHttpService {
     this.updateDisbursementService.updateOne(
       disbursementId,
       disbursementUpdatedField
+    );
+
+    this.createDisbursementResponseService.createOne(
+      result[DisbursementResponse.ATTRIBUTE_DATA]
     );
 
     return result;

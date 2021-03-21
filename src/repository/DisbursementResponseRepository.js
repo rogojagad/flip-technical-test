@@ -16,4 +16,8 @@ export default class DisbursementRepository {
 
     return { id, ...data };
   }
+
+  async readAll() {
+    return await this.db.collection(DisbursementResponse.COLLECTION).get();
+  }
 }
