@@ -10,7 +10,7 @@ export default class DisbursementController {
     this.responseFactory = new ResponseFactory();
   }
 
-  async createOneByUserId(requestBody, res) {
+  async createOne(requestBody, res) {
     const userId = requestBody[DisbursementQueryParam.USER_ID];
     const remark = requestBody[DisbursementQueryParam.REMARK];
 

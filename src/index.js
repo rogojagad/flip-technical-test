@@ -29,7 +29,7 @@ app.get("/user/:userId/disbursement", (req, res) => {
   return disbursementController.readManyByUserId(userId, res);
 });
 app.post("/user/disbursement", (req, res) => {
-  return disbursementController.createOneByUserId(req.body, res);
+  return disbursementController.createOne(req.body, res);
 });
 app.get("*", function (req, res) {
   responseFactory.responseNotFound(res);
