@@ -51,7 +51,7 @@ app.get("/user/:userId/disbursement", isAuthenticated, (req, res) => {
   return disbursementController.readManyByUserId(userId, res);
 });
 app.post("/user/disbursement", isAuthenticated, (req, res) => {
-  return disbursementController.createOne(req.body, res);
+  return disbursementController.createOne(req.body, req, res);
 });
 app.get("*", function (_, res) {
   responseFactory.responseNotFound(res);

@@ -1,3 +1,4 @@
+import Auth from "~src/const/Auth";
 import CreateDisbursementService from "~src/service/CreateDisbursementService";
 import DisbursementQueryParam from "~src/const/DisbursementQueryParam";
 import ReadDisbursementService from "~src/service/ReadDisbursementService";
@@ -10,8 +11,8 @@ export default class DisbursementController {
     this.responseFactory = new ResponseFactory();
   }
 
-  async createOne(requestBody, res) {
-    const userId = requestBody[DisbursementQueryParam.USER_ID];
+  async createOne(requestBody, req, res) {
+    const userId = req.session[Auth.SESSION_KEY_USER_ID];
     const remark = requestBody[DisbursementQueryParam.REMARK];
 
     if (userId) {
