@@ -14,7 +14,7 @@ class RetrySendDraftedDisbursementCommand {
 
   async retrySendDraftedDisbursement() {
     const disbursements = await this.readDisbursementService.readManyByStatus(
-      Disbursement.STATUS_PENDING
+      Disbursement.STATUS_DRAFT
     );
 
     console.log(`Found ${disbursements.length} drafted disbursements`);
