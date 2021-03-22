@@ -16,7 +16,7 @@
     "disbursement:retry-drafted": "node build/command/RetrySendDraftedDisbursementCommand.js",
     "setup:dev": "npm ci && npm run postinstall",
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "start": "npm run build && node build/index.js",
+    "start": "node build/index.js",
     "test": "jest"
   },
   "author": "Rogo Jagad Alit",
