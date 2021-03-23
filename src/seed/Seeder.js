@@ -52,11 +52,11 @@ async function seedUsers() {
 }
 
 async function seedBalance(userIds) {
-  userIds.forEach((userId) => {
+  userIds.forEach(async (userId) => {
     const fields = Object();
     fields[Balance.ATTRIBUTE_AMOUNT] = 1000000;
     fields[Balance.ATTRIBUTE_USER_ID] = userId;
 
-    balanceRepository.createOne(fields);
+    await balanceRepository.createOne(fields);
   });
 }
